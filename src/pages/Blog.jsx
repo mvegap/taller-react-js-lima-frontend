@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet';
 import Header from '@components/Header';
 import axios from '../utils/axios';
 
+import Post from '@components/Post';
+
 class Blog extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +64,8 @@ class Blog extends Component {
           <h1>Last news</h1>
           <ul>
             { posts.map(item => (
-              <li key={item.id}>{item.title}</li>
+              <Post key={item.id} title={item.title} />
+              // <li key={item.id}>{item.title}</li>
             )) }
           </ul>
         </React.Fragment>
