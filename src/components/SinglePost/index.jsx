@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Header from '@components/Header';
-import axios from '../utils/axios';
+import axios from '@utils/axios';
 
-import Post from '@components/Post';
-
-class Blog extends Component {
+class SinglePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
       error: null,
-      posts: []
+      id: null,
+      author: null,
+      title: null,
+      content: null,
     }
   }
+
   async componentDidMount() {
     try {
-      let arrData = await axios.get('/posts');
-      arrData = arrData.data;
+      let dataPost = await axios.get('/posts/' + this.props.match.params.postId);
+      console.log(dataPost, 'data desde api');
+      dataPost = dataPost.data;
       this.setState({
         isLoaded: true,
-        posts: arrData,
+        author: dataPost.userId,
+        title: dataPost.title,
+        content: dataPost.body,
       });
     } catch (e) {
       this.setState({
@@ -31,8 +35,9 @@ class Blog extends Component {
       console.log(`😱 Error al realizar la petición en AXIOS: ${e}`);
     }
   }
+
   render() {
-    const { error, isLoaded, posts } = this.state;
+    const { error, isLoaded, author, title, content } = this.state;
     if (error) {
       return(
         <React.Fragment>
@@ -51,30 +56,23 @@ class Blog extends Component {
             <title>Loading...</title>
           </Helmet>
           <Header />
-          <h1>Last news</h1>
           <p>Loading...</p>
         </React.Fragment>
       );
-    }else {
+    } else {
       return(
         <React.Fragment>
           <Helmet>
-            <title>Blog | Lima Frontend</title>
+          <title>{ this.state.title } | Lima Frontend</title>
           </Helmet>
           <Header />
-          <h1>Last news</h1>
-          <ul>
-            { posts.map(item => (
-              <NavLink key={item.id} to={'/posts/' + item.id} >
-                <Post key={item.id} title={item.title} />  
-              </NavLink>
-              // <li key={item.id}>{item.title}</li>
-            )) }
-          </ul>
+          <p><small>Author: { author }</small></p>
+          <h1>{ title }</h1>
+          <p>{ content }</p>
         </React.Fragment>
       );
     }
   }
-};
+}
 
-export default Blog;
+export default SinglePost;

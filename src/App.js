@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Footer from '@components/Footer';
+import SinglePost from '@components/SinglePost';
 import Home from '@pages/Home';
 import About from '@pages/About';
 import Portfolio from '@pages/Portfolio';
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/portfolio" component={Portfolio} />
             <Route path="/blog" component={Blog} />
             <Route path="/contact" component={Contact} />
+            <Route path="/posts/:postId" component={SinglePost} />
             <Route path='*' component={Empty} />
           </Switch>
         </Router>
