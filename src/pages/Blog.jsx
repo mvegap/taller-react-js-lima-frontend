@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import Header from './Header';
+import Header from '@components/Header';
 import axios from '../utils/axios';
 
 class Blog extends Component {

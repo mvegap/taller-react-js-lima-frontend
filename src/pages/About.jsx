@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import Header from './Header';
+import Header from '@components/Header';
 
-class Home extends Component {
+class About extends Component {
   render() {
     return(
       <React.Fragment>
         <Helmet>
-          <title>Home | Lima Frontend</title>
+          <title>About us | Lima Frontend</title>
         </Helmet>
         <Header />
-        <h1>Inicio</h1>
+        <h1>About us</h1>
       </React.Fragment>
     );
   }
 };
 
-export default Home;
+export default About;

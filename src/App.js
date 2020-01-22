@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Footer from './components/Footer';
-import Home from './components/Home';
-import About from './components/About';
-import Portfolio from './components/Portfolio';
-import Blog from './components/Blog';
-import Contact from './components/Contact';
-import Empty from './components/Empty';
+import Footer from '@components/Footer';
+import Home from '@pages/Home';
+import About from '@pages/About';
+import Portfolio from '@pages/Portfolio';
+import Blog from '@pages/Blog';
+import Contact from '@pages/Contact';
+import Empty from '@pages/Empty';
 
 class App extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      searchValue: null,
-      giphyURL: null,
-    }
-  }
-
   render() {
     return (
       <React.Fragment>

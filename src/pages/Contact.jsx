@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import Header from './Header';
+import Header from '@components/Header';
 
 class Contact extends Component {
   render() {
